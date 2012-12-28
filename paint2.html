@@ -1,0 +1,298 @@
+<html>
+<head><title>paint</title>
+
+<table>
+<tr align="center">
+        <canvas id = "paint" width=1270 height=400 style="background-color:white;border: 5px solid #FF0066"></canvas></div>
+
+
+<form><center>
+<input  type="button" Style = "color:red" value="line" onclick="line()">
+<input  type="button" Style = "color:red" value="rectangle" onclick="rect()">
+<input  type="button" Style = "color:red" value="circle" onclick="circle()">
+<input  type="button" Style = "color:red" value="pencil" onclick="pencil()">
+<input  type="button" Style = "color:red" value="fillstyle" onclick="fillstyle1()">
+<input  type="button" Style = "color:red" value="eraser" onclick="eraser()">
+<input  type="button" Style = "color:red" value="clear1" onclick="clear1()">
+<select id = "linewid" style =  "color:red" onchange = "linew()"> <option value = "2">2px</option><option value = "4">4px</option> 
+<option value = "6">6px</option><option value = "8">8px</option></select> 
+<input type="text" id="valu">
+<input type="button" value="save" onclick="save();">
+<tr><a href='/'>newfile</a></tr>
+</center></form>
+<center>
+<table border=2 bgcolor=#FFFFFF align="center">
+<td><div onclick = "color('#0000ff')" style ="width:20px;height:20px;background-color:#0000ff"></div><td>
+<td><div onclick = "color('#009fff')" style ="width:20px;height:20px;background-color:#009fff"></div><td>
+<td><div onclick = "color('#0fffff')" style ="width:20px;height:20px;background-color:#0fffff"></div><td>
+<td><div onclick = "color('#bfffff')" style ="width:20px;height:20px;background-color:#bfffff"></div><td>
+<td><div onclick = "color('#000000')" style ="width:20px;height:20px;background-color:#000000"></div><td>
+<td><div onclick = "color('#333333')" style ="width:20px;height:20px;background-color:#333333"></div><td>
+<td><div onclick = "color('#666666')" style ="width:20px;height:20px;background-color:#666666"></div><td>
+<td><div onclick = "color('#999999')" style ="width:20px;height:20px;background-color:#999999"></div><td>
+<td><div onclick = "color('#ffcc66')" style ="width:20px;height:20px;background-color:#ffcc66"></div><td>
+<td><div onclick = "color('#ffcc00')" style ="width:20px;height:20px;background-color:#ffcc00"></div><td>
+<td><div onclick = "color('#ffff00')" style ="width:20px;height:20px;background-color:#ffff00"></div><td>
+<td><div onclick = "color('#ffff99')" style ="width:20px;height:20px;background-color:#ffff99"></div><td>
+<td><div onclick = "color('#003300')" style ="width:20px;height:20px;background-color:#003300"></div><td>
+<td><div onclick = "color('#555000')" style ="width:20px;height:20px;background-color:#555000"></div><td>
+<tr>
+<td><div onclick = "color('#00ff00')" style ="width:20px;height:20px;background-color:#00ff00"></div><td>
+<td><div onclick = "color('#99ff99')" style ="width:20px;height:20px;background-color:#99ff99"></div><td>
+<td><div onclick = "color('#f00000')" style ="width:20px;height:20px;background-color:#f00000"></div><td>
+<td><div onclick = "color('#ff6600')" style ="width:20px;height:20px;background-color:#ff6600"></div><td>
+<td><div onclick = "color('#ff9933')" style ="width:20px;height:20px;background-color:#ff9933"></div><td>
+<td><div onclick = "color('#F5DEB3')" style ="width:20px;height:20px;background-color:#F5DEB3"></div><td>
+<td><div onclick = "color('#330000')" style ="width:20px;height:20px;background-color:#330000"></div><td>
+<td><div onclick = "color('#663300')" style ="width:20px;height:20px;background-color:#663300"></div><td>
+<td><div onclick = "color('#cc6600')" style ="width:20px;height:20px;background-color:#cc6600"></div><td>
+<td><div onclick = "color('#DEB887')" style ="width:20px;height:20px;background-color:#DEB887"></div><td>
+<td><div onclick = "color('#aa0fff')" style ="width:20px;height:20px;background-color:#aa0fff"></div><td>
+<td><div onclick = "color('#cc66cc')" style ="width:20px;height:20px;background-color:#cc66cc"></div><td>
+<td><div onclick = "color('#ff66ff')" style ="width:20px;height:20px;background-color:#ff66ff"></div><td>
+<td><div onclick = "color('#ff99ff')" style ="width:20px;height:20px;background-color:#ff99ff"></div><td>
+
+</tr>
+</table></center>
+</tr>
+<tr>
+<b>filenames<b>
+<p id="element"></p>
+</tr>
+</table>
+
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+
+<script>
+var canvas=document.getElementById("paint");
+var context=canvas.getContext("2d");
+var x=0,y=0,v=0;
+if (imdata==""){
+  totaldata=[]
+  }else{
+  totaldata=imdata
+  display()
+  }
+
+se="black";
+name=""
+l='['+l+']'
+l=JSON.parse(l)
+
+for(i in l){
+name+='<a href='+l[i]+' id="link">'+l[i]+'</a><br>'
+document.getElementById("element").innerHTML=name}
+function pencil(){
+document.documentElement.style.cursor='url(http://cur.cursors-4u.net/others/oth-5/oth506.cur),auto'
+canvas.onmousedown = pencil1
+canvas.onmouseup = pencil3
+canvas.onmousemove = pencil2
+}
+
+function pencil3(e){
+x2 = e.clientX;
+y2 = e.clientY;
+flag = 1;
+}
+function line(){
+document.documentElement.style.cursor='url(http://cur.cursors-4u.net/user/use-1/use109.cur),auto'
+canvas.onmousedown = line1
+canvas.onmousemove = line2
+canvas.onmouseup = line3
+}
+
+function rect(){
+document.documentElement.style.cursor='url(http://cur.cursors-4u.net/user/use-1/use109.cur),auto'
+canvas.onmousedown = rect1
+canvas.onmousemove = rect2
+canvas.onmouseup = rect3
+}
+function circle(){
+document.documentElement.style.cursor='url(http://cur.cursors-4u.net/user/use-1/use109.cur),auto'
+canvas.onmousedown = circle1
+canvas.onmousemove = circle2
+canvas.onmouseup = circle3
+}
+function circle1(e){
+img4 = context.getImageData(0,0,paint.width,paint.height)
+x = e.clientX ;
+y = e.clientY;
+f6 = 0;
+}
+function circle2(e){
+x1 = e.clientX ;
+y1 = e.clientY;
+r = x1 - x;
+if(f6 == 0){
+context.putImageData(img4,0,0)
+context.beginPath();
+context.arc(x-10, y-10, r, 0, 2 * Math.PI, false);
+context.stroke();
+if(v == 1){context.fill();}
+}
+}
+function circle3(e){
+x2 = e.clientX;
+y2 = e.clientY;
+f6 = 1;
+totaldata.push({"Type":"circle", "X0":x,"Y0":y,"radius":r,"fill":v,"color":se})
+}
+function clear(){
+context.clearRect(0,0,1270,400);
+}
+function line1(e){
+img1 = context.getImageData(0,0,paint.width,paint.height)
+x = e.clientX ;
+y = e.clientY;
+f1 = 0
+}
+function line2(e){
+x1 = e.clientX ;
+y1 = e.clientY;
+if ( f1 == 0){
+context.putImageData(img1,0,0)
+context.beginPath();
+context.moveTo(x-12,y-12);
+context.lineTo(x1-10,y1-10);
+context.stroke();
+context.closePath();
+}
+}
+
+function line3(e){
+x2 = e.clientX;
+y2 = e.clientY;
+f1 = 1
+totaldata.push({"Type":"line", "X0":x,"Y0":y,"X1":x2,"Y1":y2,"color":se})
+}
+function rect1(e){
+img2 = context.getImageData(0,0,paint.width,paint.height)
+x = e.clientX ;
+y = e.clientY;
+f4 = 0;
+}
+function fillstyle1(){
+v=v+1
+v=(v)%2
+}
+function rect2(e){
+x1 = e.clientX ;
+y1 = e.clientY;
+if(f4 == 0){
+context.putImageData(img2,0,0)
+h = y1-y
+w = x1-x
+context.strokeRect(x-10,y-10,w,h)
+if(v==1){context.fillRect(x-10,y-10,w,h)}
+}
+}
+function rect3(e){
+x2 = e.clientX ;
+y2 = e.clientY;
+f4 = 1;
+totaldata.push({"Type":"Rectangle", "X0":x-10,"Y0":y-10,"w0":w,"h0":h,"fill":v,"color":se})
+}
+function pencil1(e)
+{ x =e.clientX;
+y = e.clientY;
+flag = 0;
+}
+function pencil2(e){
+x1 = e.clientX;
+y1 = e.clientY;
+if (flag == 0){
+context.beginPath();
+context.moveTo(x,y);
+context.lineTo(x1,y1);
+context.stroke();
+context.closePath();
+x = x1;
+y = y1;
+}
+}
+
+function clear1(){
+c = clear()
+return c;
+}
+function color(col){
+context.strokeStyle=col
+context.fillStyle=col
+se = col
+}
+
+function eraser(){
+document.documentElement.style.cursor='url(http://cur.cursors-4u.net/nature/nat-11/nat1033.gif),auto'
+canvas.onmousedown = eraser1
+canvas.onmouseup = eraser2
+}
+function eraser1(e){
+x = e.clientX ;
+y = e.clientY;
+}
+function eraser2(e){
+x1 = e.clientX ;
+y1 = e.clientY;
+context.fillStyle = 'white'
+context.fillRect(x,y,x1-x,y1-y)
+}
+function linew(){
+context.lineWidth = document.getElementById("linewid").value;
+}
+function save(){
+//alert(JSON.stringify(totaldata))
+//alert(JSON.stringify(file))
+$.post("/",{filnm:JSON.stringify(document.getElementById("valu").value),
+imagedata:JSON.stringify(totaldata)
+},
+function(data,status){document.write(data)
+});
+}
+function display(){
+for(i in totaldata){
+
+if(totaldata[i]['Type']=='line'){
+context.beginPath()
+x1=totaldata[i]['X0']
+y1=totaldata[i]['Y0']
+x2=totaldata[i]['X1']
+y2=totaldata[i]['Y1']
+context.moveTo(x1,y1)
+context.lineTo(x2,y2)
+context.strokeStyle=totaldata[i]['color']
+context.stroke()
+context.closePath()
+}
+if(totaldata[i]['Type']=='Rectangle'){
+x1=totaldata[i]['X0']
+y1=totaldata[i]['Y0']
+w=totaldata[i]['w0']
+h=totaldata[i]['h0']
+context.strokeStyle=totaldata[i]['color']
+context.fillStyle=totaldata[i]['color']
+context.strokeRect(x1,y1,w,h)
+if(totaldata[i]['fill']==1){
+context.fillRect(x1,y1,w,h)
+}
+}
+if(totaldata[i]['Type']=='circle'){
+context.beginPath()
+x1=totaldata[i]['X0']
+y1=totaldata[i]['Y0']
+context.arc(x1,y1,totaldata[i]['radius'],0,2*Math.PI,true)
+context.strokeStyle=totaldata[i]['color']
+context.fillStyle=totaldata[i]['color']
+if(totaldata[i]['fill']==1){
+context.fill()
+}
+context.stroke()
+context.closePath()
+}
+}
+}
+</script>
+
+</head>
+<body bgcolor = "#009fff" ><div id="container">
+</body></html>
+
